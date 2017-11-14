@@ -20,42 +20,22 @@ Vue.component('mostrar-datos', {
           {{mostrar(listar,valortipo)}}
           
           <v-data-table v-bind:headers="headers" :items="listar" hide-actions class="elevation-1">
-          <template slot="items" slot-scope="props">
-            <td>{{ props.item.time }}</td>
-            <td class="text-xs-right">{{ props.item.close }}</td>
-            <td class="text-xs-right">{{ props.item.high }}</td>
-            <td class="text-xs-right">{{ props.item.low }}</td>
-            <td class="text-xs-right">{{ props.item.open }}</td>
-            <td class="text-xs-right">{{ props.item.volumefrom }}</td>
-            <td class="text-xs-right">{{ props.item.volumeto }}</td>
-          </template>
-      </v-data-table>
+            <template slot="items" slot-scope="props">
+              <td>{{ props.item.time }}</td>
+              <td class="text-xs-right">{{ props.item.close }}</td>
+              <td class="text-xs-right">{{ props.item.high }}</td>
+              <td class="text-xs-right">{{ props.item.low }}</td>
+              <td class="text-xs-right">{{ props.item.open }}</td>
+              <td class="text-xs-right">{{ props.item.volumefrom }}</td>
+              <td class="text-xs-right">{{ props.item.volumeto }}</td>
+            </template>
+          </v-data-table>
 
-        </div>
-      </v-card-text>
-    </v-card>
-  </v-flex>
-</v-layout>
-
-        <!--<div class='caja '>
-          <center>Componente</center>
-          <center>auiiii: {{valortipo}}</center>
-          
-          <center> {{msj2}} </center>
-          
-          <div :id="'chart-'+id"></div> 
-          
-          <div v-if="listar.length > 1">
-            
-            {{mostrar(listar,valortipo)}}
-            <ul>
-              <li v-for="lista in listar">
-                {{lista}}
-              </li>
-            </ul>
-          </div>
-        </div>-->
-      `,
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>`,
   data: function () {
     return {
       msj2: 'Inicio del componente ',
@@ -106,8 +86,6 @@ Vue.component('mostrar-datos', {
           json: {
             x: row_time,
             data1: row_valor
-            /* x: ['2017-11-13 10:11:00', '2017-11-13 18:11:00'],
-             data1: [20, 30]*/
           }
         },
         axis: {
@@ -132,12 +110,15 @@ new Vue({
     titulo: 'Vue.js - Cryptocompare API ',
     listar: {},
     listar2: {},
+    listar3: {},
     valortipo: {},
-    valortipo2: {}
+    valortipo2: {},
+    valortipo3: {}
   },
   mounted: function () {
     this.BTC();
     this.ETH();
+    this.DASH();
   },
   methods: {
     BTC: function () {
@@ -157,7 +138,7 @@ new Vue({
             row.push([element.time])
           });
           _this.valortipo = 'BTC'
-          return _this.listar = response.data.Data ////_this.listar = row
+          return _this.listar = response.data.Data
         });
     },
 
@@ -180,6 +161,27 @@ new Vue({
           });
           _this.valortipo2 = 'ETH'
           return _this.listar2 = response.data.Data
+        });
+    },
+    DASH: function () {
+      console.log('Entrando a DASH')
+      var urlServer = 'https://min-api.cryptocompare.com/data/histohour?fsym=DASH&tsym=USD&limit=24&aggregate=1&e=CCCAGG'
+      var _this = this;
+      var confiAxios = {
+        url: urlServer,
+        method: 'get',
+        responseType: 'json',
+        headers: { 'Content-Type': 'application/json' }
+      };
+      axios.request(confiAxios)
+        .then(function (response) {
+          console.log(response.data.Data)
+          var row = []
+          response.data.Data.forEach(element => {
+            row.push([element.time])
+          });
+          _this.valortipo3 = 'DASH'
+          return _this.listar3 = response.data.Data
         });
     }
   }
