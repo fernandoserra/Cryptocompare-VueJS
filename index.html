@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cryptocompare-Vue.Js</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="css/c3.min.css">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app" v-cloak>
+    <v-app>
+      <v-toolbar dark color="teal lighten-1">
+        <v-toolbar-side-icon></v-toolbar-side-icon>
+        <v-toolbar-title class="white--text">Cryptocompare-Vue.Js</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn icon>
+          <v-icon>search</v-icon>
+        </v-btn>
+        <v-btn icon>
+          <v-icon>more_vert</v-icon>
+        </v-btn>
+      </v-toolbar>
+
+      <v-container grid-list-xl>
+        <mostrar-datos :listar='listar' :valortipo='valortipo'></mostrar-datos>
+        <hr>
+        <mostrar-datos :listar='listar2' :valortipo='valortipo2'></mostrar-datos>
+      </v-container>
+
+
+      <v-footer class="pa-3" color="teal darken-3">
+        <v-spacer></v-spacer>
+        <div>© {{ new Date().getFullYear() }}</div>
+      </v-footer>
+
+    </v-app>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+  <script src='js/d3.min.js'></script>
+  <script src='js/c3.min.js'></script>
+  <script src='js/moment.min.js'></script>
+  <script src='js/js.js'></script>
+
+</body>
+
+</html>
