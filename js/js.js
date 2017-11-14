@@ -1,12 +1,12 @@
 Vue.component('mostrar-datos', {
   props: ['listar', 'valortipo'],
   template: `
-
+  
   <v-layout row wrap >
-  <v-flex xs12>
-    <v-card dark color="grey lighten-4">
-      <v-card-text style="color:#000">
-        <center><h2>USD - {{valortipo}}</h2></center>
+  <v-flex xs12> 
+    <v-card  dark color="grey lighten-4">
+      <v-card-text style="color:#000"> 
+        <center><h2 v-if='!loading'>USD - {{valortipo}}</h2></center>
         <div :id="'chart-'+id"></div> 
       </v-card-text>
     </v-card>
@@ -15,7 +15,14 @@ Vue.component('mostrar-datos', {
   <v-flex xs12>
     <v-card dark color="grey lighten-4">
       <v-card-text style="color:#000">
-        <div v-if="listar.length > 1">
+
+      <div v-if='loading'>
+        <center>
+          <v-progress-circular indeterminate color="green"></v-progress-circular>
+        </center>
+      </div>
+      
+      <div v-if="listar.length > 1">
         
           {{mostrar(listar,valortipo)}}
           
@@ -39,6 +46,7 @@ Vue.component('mostrar-datos', {
   data: function () {
     return {
       msj2: 'Inicio del componente ',
+      loading: true,
       headers: [
         {
           text: 'Fecha',
@@ -99,7 +107,7 @@ Vue.component('mostrar-datos', {
         }
 
       });
-
+      this.loading = false;
       return
     }
   }
@@ -113,7 +121,8 @@ new Vue({
     listar3: {},
     valortipo: {},
     valortipo2: {},
-    valortipo3: {}
+    valortipo3: {},
+    dialog: false
   },
   mounted: function () {
     this.BTC();

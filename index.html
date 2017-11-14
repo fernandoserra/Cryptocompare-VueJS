@@ -19,16 +19,13 @@
 
 <body>
 
-  <div id="app" v-cloak>
-    <v-app>
+  <div id="app">
+    <v-app v-cloak>
       <v-toolbar dark color="teal lighten-1">
         <v-toolbar-side-icon></v-toolbar-side-icon>
         <v-toolbar-title class="white--text">Cryptocompare-Vue.Js</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn icon>
-          <v-icon>search</v-icon>
-        </v-btn>
-        <v-btn icon>
+        <v-btn icon @click.native.stop="dialog = true">
           <v-icon>more_vert</v-icon>
         </v-btn>
       </v-toolbar>
@@ -41,10 +38,74 @@
         <mostrar-datos :listar='listar3' :valortipo='valortipo3'></mostrar-datos>
       </v-container>
 
+      <v-dialog v-model="dialog" max-width="500">
+        <v-card>
+          <v-card-title class="headline">Información</v-card-title>
+          <v-list two-line>
+            <v-divider></v-divider>
+            <v-list-tile>
+              <v-list-tile-avatar>
+                <img src='img/vue.jpg'>
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <v-list-tile-title>Vue.js</v-list-tile-title>
+                <v-list-tile-sub-title>
+                  <a href="https://vuejs.org/" target="_blank">https://vuejs.org/</a>
+                </v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-divider></v-divider>
+            <v-list-tile>
+              <v-list-tile-avatar>
+                <img src="img/vuetify.jpg">
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <v-list-tile-title>Vuetify.js</v-list-tile-title>
+                <v-list-tile-sub-title>
+                  <a href="https://vuetifyjs.com/" target="_blank">https://vuetifyjs.com/</a>
+                </v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-divider></v-divider>
+            <v-list-tile>
+              <v-list-tile-avatar>
+                <img src="img/c3.jpg">
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <v-list-tile-title>C3.js</v-list-tile-title>
+                <v-list-tile-sub-title>
+                  <a href="http://c3js.org/" target="_blank">http://c3js.org/</a>
+                </v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-divider></v-divider>
+            <v-list-tile>
+              <v-list-tile-avatar>
+                <img src="img/cryptocompare.jpg">
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <v-list-tile-title>Cryptocompare Api</v-list-tile-title>
+                <v-list-tile-sub-title>
+                  <a href="https://www.cryptocompare.com/api/" target="_blank">https://www.cryptocompare.com/api/</a>
+                </v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+
+          </v-list>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" flat="flat" @click.native="dialog = false">Aceptar</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
       <v-footer class="pa-3" color="teal darken-3">
+        <div>
+          <a href="https://twitter.com/fernando_serra" class="white--text subheading" target="_blank">@fernando_serra</a>
+        </div>
         <v-spacer></v-spacer>
-        <div>© {{ new Date().getFullYear() }}</div>
+        <div class="white--text subheading">© {{ new Date().getFullYear() }}</div>
       </v-footer>
 
     </v-app>
